@@ -1,0 +1,251 @@
+openapi: 3.0.3
+
+info:
+  title: COP4331 Contact Manager API
+  description: Backend API for user authentication and contact management
+  version: 1.0.0
+
+servers:
+  - url: http://64.225.16.120/LAMPAPI/
+
+tags:
+  - name: Auth
+    description: User authentication endpoints
+  - name: Contacts
+    description: Contact management endpoints
+
+paths:
+
+  /Login.php:
+    post:
+      tags: [Auth]
+      summary: Authenticate a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        "200":
+          description: Login success or failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  /Register.php:
+    post:
+      tags: [Auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        "200":
+          description: Registration result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+
+  /AddContact.php:
+    post:
+      tags: [Contacts]
+      summary: Add a new contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddContactRequest'
+      responses:
+        "200":
+          description: Contact added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+
+  /SearchContact.php:
+    post:
+      tags: [Contacts]
+      summary: Search contacts by first name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchContactRequest'
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchContactResponse'
+
+  /UpdateContact.php:
+    post:
+      tags: [Contacts]
+      summary: Update an existing contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContactRequest'
+      responses:
+        "200":
+          description: Update result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+
+  /DeleteContact.php:
+    post:
+      tags: [Contacts]
+      summary: Delete a contact by name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteContactRequest'
+      responses:
+        "200":
+          description: Delete result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+
+components:
+  schemas:
+
+    LoginRequest:
+      type: object
+      required: [login, password]
+      properties:
+        login:
+          type: string
+          example: jsmith
+        password:
+          type: string
+          example: password123
+
+    RegisterRequest:
+      type: object
+      required: [firstName, lastName, login, password]
+      properties:
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Smith
+        login:
+          type: string
+          example: jsmith
+        password:
+          type: string
+          example: password123
+
+    AddContactRequest:
+      type: object
+      required: [firstName, lastName, phone, email, userId]
+      properties:
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Doe
+        phone:
+          type: string
+          example: 4075551234
+        email:
+          type: string
+          example: jane@email.com
+        userId:
+          type: integer
+          example: 1
+
+    SearchContactRequest:
+      type: object
+      required: [search, userId]
+      properties:
+        search:
+          type: string
+          example: Ja
+        userId:
+          type: integer
+          example: 1
+
+    UpdateContactRequest:
+      type: object
+      required: [id, firstName, lastName, phone, email, userId]
+      properties:
+        id:
+          type: integer
+          example: 12
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        userId:
+          type: integer
+
+    DeleteContactRequest:
+      type: object
+      required: [firstName, lastName]
+      properties:
+        firstName:
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Doe
+
+    LoginResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Smith
+        error:
+          type: string
+          example: ""
+
+    SearchContactResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: string
+            example: Jane Doe
+        error:
+          type: string
+          example: ""
+
+    GenericResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: ""
