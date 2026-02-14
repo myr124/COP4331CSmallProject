@@ -47,7 +47,7 @@ function doRegister()
 
 					saveCookie();
 
-					window.location.href = "color.html";
+					window.location.href = "contacts.html";
 				}
 			}
 		};
@@ -101,7 +101,7 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "color.html";
+				window.location.href = "contacts.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -146,7 +146,7 @@ function readCookie()
 	
 	if( userId < 0 )
 	{
-		window.location.href = "index.html";
+		window.location.href = "login.html";
 	}
 	else
 	{
@@ -160,7 +160,7 @@ function doLogout()
 	firstName = "";
 	lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
+	window.location.href = "login.html";
 }
 
 function addContact(){
