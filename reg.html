@@ -18,18 +18,22 @@
     <div id="regDiv">
         <span id="inner-title">REGISTRATION</span>
         <form id="regForm" onsubmit="doRegister(); return false;">
-            <label for="registerEmail">Email:</label>
-            <input type="email" id="registerEmail" required>
-            <br>
-            <label for="registerPassword">Password:</label>
-            <input type="password" id="registerPassword" required>
-            <br>
-            <label for="registerFirstName">First Name:</label>
-            <input type="text" id="registerFirstName" required>
-            <br>
-            <label for="registerLastName">Last Name:</label>
-            <input type="text" id="registerLastName" required>
-            <br>
+            <div class="form-row">
+                <label for="registerEmail" class="reg-label narrow-label">Email:</label>
+                <input type="email" id="registerEmail" class="reg-input" placeholder="example@email.com">
+            </div>
+            <div class="form-row">
+                <label for="registerPassword" class="reg-label">Password:</label>
+                <input type="password" id="registerPassword" class="reg-input" required>
+            </div>
+            <div class="form-row">
+                <label for="registerFirstName" class="reg-label">First Name:</label>
+                <input type="text" id="registerFirstName" class="reg-input" required>
+            </div>
+            <div class="form-row">
+                <label for="registerLastName" class="reg-label">Last Name:</label>
+                <input type="text" id="registerLastName" class="reg-input" required>
+            </div>
             <input type="submit" id="regSubmit" value="Register" class="submit-btn">
         </form>
     </div>
