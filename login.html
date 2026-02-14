@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shark's Cove | Login</title>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1 id="title">Shark's Cove</h1>
+
+<div id="loginDiv">
+	<span id="inner-title">PLEASE LOG IN</span>
+	<input type="text" id="loginName" placeholder="Username" /><br />
+	<input type="password" id="loginPassword" placeholder="Password"/><br />
+	<button type="button" id="loginButton" class="buttons" onclick="doLogin();">Login</button>
+	<button type="button" id="registerButton" class="buttons" onclick="window.location.href='reg.html';"> Register </button>
+	<span id="loginResult"></span>
+</div>
+
+</body>
+</html>

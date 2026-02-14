@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shark's Cove | Contacts</title>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1 id="title">Shark's Cove</h1>
+
+<div id="contactListDiv">
+	<input type="text" id="searchName" onkeyup="searchContact()" placeholder="Search the cove..">
+    <ul id="myUL">
+        <li><a href="#">Item A</a></li>
+        <li><a href="#">Item B</a></li>
+        <li><a href="#">Item C</a></li>
+        <li><a href="#">Item D</a></li>
+    </ul>
+</div>
+
+<div id="addContactDiv">
+    <form id="addContactForm">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Add Contact</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr><th>Name</th><th>Email</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="contactList">
+            <!-- JavaScript will add rows here -->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

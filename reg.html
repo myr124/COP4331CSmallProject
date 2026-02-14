@@ -1,31 +1,38 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>COP 4331 LAMP Stack Demo</title>
+    <title>Shark's Cove | Register</title>
     <script type="text/javascript" src="js/md5.js"></script>
-    <script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	 
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>COP 4331 LAMP Stack Demo</h1>
-    <h2>Registration</h2>
-    <form onsubmit="doRegister(); return false;">
-        <label for="registerEmail">Email:</label>
-        <input type="email" id="registerEmail" required>
-        <br>
-        <label for="registerPassword">Password:</label>
-        <input type="password" id="registerPassword" required>
-        <br>
-        <label for="registerFirstName">First Name:</label>
-        <input type="text" id="registerFirstName" required>
-        <br>
-        <label for="registerLastName">Last Name:</label>
-        <input type="text" id="registerLastName" required>
-        <br>
-        <input type="submit" value="Register">
-    </form>
+    <h1 id="title">Shark's Cove</h1>
+    <div id="regDiv">
+        <span id="inner-title">REGISTRATION</span>
+        <form id="regForm" onsubmit="doRegister(); return false;">
+            <label for="registerEmail">Email:</label>
+            <input type="email" id="registerEmail" required>
+            <br>
+            <label for="registerPassword">Password:</label>
+            <input type="password" id="registerPassword" required>
+            <br>
+            <label for="registerFirstName">First Name:</label>
+            <input type="text" id="registerFirstName" required>
+            <br>
+            <label for="registerLastName">Last Name:</label>
+            <input type="text" id="registerLastName" required>
+            <br>
+            <input type="submit" id="regSubmit" value="Register" class="submit-btn">
+        </form>
+    </div>
     <div id="registerResult"></div>
-    
-
 </body>
 </html>
