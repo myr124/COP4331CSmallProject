@@ -24,19 +24,13 @@
 </div>
 
 <div id="addContactDiv">
-    <form id="addContactForm">
-        <input type="text" id="name" placeholder="Name" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <button type="submit">Add Contact</button>
-    </form>
-    <table border="1">
-        <thead>
-            <tr><th>Name</th><th>Email</th><th>Actions</th></tr>
-        </thead>
-        <tbody id="contactList">
-            <!-- JavaScript will add rows here -->
-        </tbody>
-    </table>
+    <span id="inner-title">Add Contact</span>
+    <input type="text" id="firstName" placeholder="First Name" required>
+    <input type="text" id="lastName" placeholder="Last Name" required>
+    <input type="text" id="email" placeholder="Email">
+    <input type="text" id="phone" placeholder="Phone">
+    <button class="submit-btn" onclick="addContact()">Add Contact</button>
+    <span id="addContactResult"></span>
 </div>
 
 </body>

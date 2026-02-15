@@ -246,40 +246,47 @@ function loadContacts()
 
 function searchContact()
 {
-	let search = document.getElementById("searchText").value;
-	document.getElementById("contactSearchResult").innerHTML = "";
-	
-	let contactList = "";
+	let search = document.getElementById("searchName").value;
 
 	let tmp = {search:search,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
 
-	let url = urlBase + '/SearchContacts.' + extension;
-	
+	let url = urlBase + '/SearchContact.' + extension;
+
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		xhr.onreadystatechange = function() 
+		xhr.onreadystatechange = function()
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
-				for( let i=0; i<jsonObject.results.length; i++ ){
-					contactList += jsonObject.results[i].firstName + " " + jsonObject.results[i].lastName + " - " + jsonObject.results[i].email + " - " + jsonObject.results[i].phone;
-					if( i < jsonObject.results.length - 1 ){
-						contactList += "<br />\r\n";
-					}
+				let list = document.getElementById("myUL");
+				list.innerHTML = "";
+
+				if( jsonObject.error && jsonObject.error.length > 0 )
+				{
+					list.innerHTML = "<li>No contacts found</li>";
+					return;
 				}
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
+
+				for( let i = 0; i < jsonObject.results.length; i++ )
+				{
+					let li = document.createElement("li");
+					let a = document.createElement("a");
+					a.href = "#";
+					a.textContent = jsonObject.results[i];
+					li.appendChild(a);
+					list.appendChild(li);
+				}
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("contactSearchResult").innerHTML = err.message;
+		document.getElementById("myUL").innerHTML = "<li>Error searching contacts</li>";
 	}
 }
