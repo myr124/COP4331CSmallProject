@@ -197,6 +197,53 @@ function addContact(){
 
 }
 
+function loadContacts()
+{
+	readCookie();
+
+	let tmp = {userId:userId,limit:10};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/GetContacts.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				let list = document.getElementById("myUL");
+				list.innerHTML = "";
+
+				if( jsonObject.error && jsonObject.error.length > 0 )
+				{
+					list.innerHTML = "<li>No contacts found</li>";
+					return;
+				}
+
+				for( let i = 0; i < jsonObject.results.length; i++ )
+				{
+					let li = document.createElement("li");
+					let a = document.createElement("a");
+					a.href = "#";
+					a.textContent = jsonObject.results[i];
+					li.appendChild(a);
+					list.appendChild(li);
+				}
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("myUL").innerHTML = "<li>Error loading contacts</li>";
+	}
+}
+
 function searchContact()
 {
 	let search = document.getElementById("searchText").value;

@@ -13,17 +13,13 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="loadContacts()">
 
 <h1 id="title">Shark's Cove</h1>
 
 <div id="contactListDiv">
 	<input type="text" id="searchName" onkeyup="searchContact()" placeholder="Search the cove..">
     <ul id="myUL">
-        <li><a href="#">Item A</a></li>
-        <li><a href="#">Item B</a></li>
-        <li><a href="#">Item C</a></li>
-        <li><a href="#">Item D</a></li>
     </ul>
 </div>
 
