@@ -164,10 +164,16 @@ function doLogout()
 }
 
 function addContact(){
+	// format phone number
+	const cleanNumber = (value) =>{
+		const cleaned = ('' + value).replace(/\D/g, '');
+		const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+		return match ? `(${match[1]}) ${match[2]}-${match[3]}` : value;
+	}
 	let contactFirstName = document.getElementById("firstName").value;
 	let contactLastName = document.getElementById("lastName").value;
 	let contactEmail = document.getElementById("email").value;
-	let contactPhone = document.getElementById("phone").value;
+	let contactPhone = cleanNumber(document.getElementById("phone").value);
 
 	document.getElementById("addContactResult").innerHTML = "";
 
