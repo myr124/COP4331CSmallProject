@@ -12,7 +12,7 @@
     $userId = $inData["userId"];
     $limit = $inData["limit"];
 
-    $stmt = $conn->prepare("SELECT FirstName, LastName FROM Contacts WHERE UserId = ? ORDER BY LastName, FirstName LIMIT ?");
+    $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email FROM Contacts WHERE UserId = ? ORDER BY LastName, FirstName LIMIT ?");
     $stmt->bind_param("ii", $userId, $limit);
     $stmt->execute();
 
@@ -25,7 +25,7 @@
             $searchResult .= ",";
         }
         $searchCount++;
-        $searchResult .= '"' . $row["FirstName"] . ' ' . $row["LastName"] . '"';
+        $searchResult .= '{"id":' . $row["ID"] . ',"firstName":"' . $row["FirstName"] . '","lastName":"' . $row["LastName"] . '","phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '"}';
     }
 
     if( $searchCount == 0 )

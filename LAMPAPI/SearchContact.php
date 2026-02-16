@@ -12,7 +12,7 @@
     $userId = $inData["userId"];
 
 
-    $stmt = $conn->prepare("SELECT FirstName, LastName from Contacts where FirstName like ? AND UserId = ?");
+    $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email from Contacts where FirstName like ? AND UserId = ?");
     $contactSearch = "%" . $inData["search"] . "%";
     $stmt->bind_param("si", $contactSearch, $userId);
     $stmt->execute();
@@ -26,7 +26,7 @@
             $searchResult .= ",";
         }
         $searchCount++;
-        $searchResult .= '"' . $row["FirstName"] . ' ' . $row["LastName"] . '"';
+        $searchResult .= '{"id":' . $row["ID"] . ',"firstName":"' . $row["FirstName"] . '","lastName":"' . $row["LastName"] . '","phone":"' . $row["Phone"] . '","email":"' . $row["Email"] . '"}';
     }
 
     if( $searchCount == 0 )

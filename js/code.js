@@ -227,12 +227,8 @@ function loadContacts()
 
 				for( let i = 0; i < jsonObject.results.length; i++ )
 				{
-					let li = document.createElement("li");
-					let a = document.createElement("a");
-					a.href = "#";
-					a.textContent = jsonObject.results[i];
-					li.appendChild(a);
-					list.appendChild(li);
+					let c = jsonObject.results[i];
+					list.appendChild(buildContactLi(c));
 				}
 			}
 		};
@@ -242,6 +238,120 @@ function loadContacts()
 	{
 		document.getElementById("myUL").innerHTML = "<li>Error loading contacts</li>";
 	}
+}
+
+function buildContactLi(c)
+{
+	let li = document.createElement("li");
+	li.dataset.id = c.id;
+
+	let info = document.createElement("div");
+	info.className = "contact-info";
+
+	let name = document.createElement("span");
+	name.className = "contact-name";
+	name.textContent = c.firstName + " " + c.lastName;
+	info.appendChild(name);
+
+	let details = document.createElement("span");
+	details.className = "contact-details";
+	let parts = [];
+	if(c.email) parts.push(c.email);
+	if(c.phone) parts.push(c.phone);
+	details.textContent = parts.join(" | ");
+	info.appendChild(details);
+
+	let actions = document.createElement("div");
+	actions.className = "contact-actions";
+
+	let editBtn = document.createElement("button");
+	editBtn.className = "icon-btn";
+	editBtn.title = "Edit";
+	editBtn.innerHTML = "&#9998;";
+	editBtn.onclick = function(){ startEdit(li, c); };
+	actions.appendChild(editBtn);
+
+	let deleteBtn = document.createElement("button");
+	deleteBtn.className = "icon-btn delete-btn";
+	deleteBtn.title = "Delete";
+	deleteBtn.innerHTML = "&#10006;";
+	deleteBtn.onclick = function(){ deleteContact(c.firstName, c.lastName); };
+	actions.appendChild(deleteBtn);
+
+	li.appendChild(info);
+	li.appendChild(actions);
+	return li;
+}
+
+function deleteContact(firstName, lastName)
+{
+	if(!confirm("Delete " + firstName + " " + lastName + "?")) return;
+
+	let tmp = {firstName:firstName,lastName:lastName};
+	let jsonPayload = JSON.stringify(tmp);
+	let url = urlBase + '/DeleteContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.onreadystatechange = function()
+	{
+		if(this.readyState == 4 && this.status == 200)
+		{
+			loadContacts();
+		}
+	};
+	xhr.send(jsonPayload);
+}
+
+function startEdit(li, c)
+{
+	li.innerHTML = "";
+	li.className = "editing";
+
+	let form = document.createElement("div");
+	form.className = "edit-form";
+
+	let fName = document.createElement("input");
+	fName.type = "text"; fName.value = c.firstName; fName.placeholder = "First Name";
+	let lName = document.createElement("input");
+	lName.type = "text"; lName.value = c.lastName; lName.placeholder = "Last Name";
+	let email = document.createElement("input");
+	email.type = "text"; email.value = c.email; email.placeholder = "Email";
+	let phone = document.createElement("input");
+	phone.type = "text"; phone.value = c.phone; phone.placeholder = "Phone";
+
+	let btnRow = document.createElement("div");
+	btnRow.className = "edit-btn-row";
+
+	let saveBtn = document.createElement("button");
+	saveBtn.className = "submit-btn";
+	saveBtn.textContent = "Save";
+	saveBtn.onclick = function(){
+		let updated = {id:c.id, firstName:fName.value, lastName:lName.value, email:email.value, phone:phone.value, userId:userId};
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", urlBase + '/UpdateContact.' + extension, true);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){ loadContacts(); }
+		};
+		xhr.send(JSON.stringify(updated));
+	};
+
+	let cancelBtn = document.createElement("button");
+	cancelBtn.className = "submit-btn";
+	cancelBtn.textContent = "Cancel";
+	cancelBtn.onclick = function(){ loadContacts(); };
+
+	btnRow.appendChild(saveBtn);
+	btnRow.appendChild(cancelBtn);
+
+	form.appendChild(fName);
+	form.appendChild(lName);
+	form.appendChild(email);
+	form.appendChild(phone);
+	form.appendChild(btnRow);
+	li.appendChild(form);
 }
 
 function searchContact()
@@ -274,12 +384,8 @@ function searchContact()
 
 				for( let i = 0; i < jsonObject.results.length; i++ )
 				{
-					let li = document.createElement("li");
-					let a = document.createElement("a");
-					a.href = "#";
-					a.textContent = jsonObject.results[i];
-					li.appendChild(a);
-					list.appendChild(li);
+					let c = jsonObject.results[i];
+					list.appendChild(buildContactLi(c));
 				}
 			}
 		};
