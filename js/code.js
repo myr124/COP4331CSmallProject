@@ -188,6 +188,7 @@ function addContact(){
 				document.getElementById("lastName").value = "";
 				document.getElementById("email").value = "";
 				document.getElementById("phone").value = "";
+				loadContacts();
 			}
 		};
 		xhr.send(jsonPayload);
