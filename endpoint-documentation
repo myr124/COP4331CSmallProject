@@ -6,7 +6,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://64.225.16.120/LAMPAPI/
+  - url: http://sharkscove.site/LAMPAPI/
 
 tags:
   - name: Auth
@@ -50,7 +50,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: '#/components/schemas/LoginResponse'
 
   /AddContact.php:
     post:
@@ -69,6 +69,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GenericResponse'
+
+  /GetContacts.php:
+    post:
+      tags: [Contacts]
+      summary: Get a limited number of contacts for a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetContactsRequest'
+      responses:
+        "200":
+          description: List of contacts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchContactResponse'
 
   /SearchContact.php:
     post:
@@ -174,6 +192,18 @@ components:
         userId:
           type: integer
           example: 1
+
+    GetContactsRequest:
+      type: object
+      required: [userId, limit]
+      properties:
+        userId:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 10
+          description: Maximum number of contacts to return
 
     SearchContactRequest:
       type: object
