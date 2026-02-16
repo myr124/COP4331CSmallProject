@@ -65,6 +65,13 @@ body
     color: #FFFFFF;
 }
 
+#regDiv input[type="text"],
+#regDiv input[type="password"],
+#regDiv input[type="email"] {
+    font-size: 24px;
+    padding: 10px 15px;
+}
+
 #loggedInDiv
 {
     font-size: 30px;
@@ -141,7 +148,7 @@ body
 	font-size: 30px;
 }
 
-input[type="text"],input[type="password"]{
+input[type="text"],input[type="password"],input[type="email"]{
     border-radius: 25px;
     display: block;
     margin: 5px auto;
