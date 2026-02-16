@@ -11,10 +11,23 @@
     $searchCount = 0;
     $userId = $inData["userId"];
 
+    $words = preg_split('/\s+/', trim($inData["search"]));
 
-    $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email from Contacts where FirstName like ? AND UserId = ?");
-    $contactSearch = "%" . $inData["search"] . "%";
-    $stmt->bind_param("si", $contactSearch, $userId);
+    
+    $sql = "SELECT ID, FirstName, LastName, Phone, Email FROM Contacts WHERE UserId = ?";
+
+    $types = "i";
+    $params = [$userId];
+
+    foreach ($words as $word) {
+        $sql .= " AND (FirstName LIKE ? OR LastName LIKE ?)";
+        $types .= "ss";
+        $params[] = "%$word%";
+        $params[] = "%$word%";
+    }
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param($types, ...$params);
     $stmt->execute();
 
     $result = $stmt->get_result();
