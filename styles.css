@@ -72,6 +72,11 @@ body
     padding: 10px 15px;
 }
 
+#regSubmit
+{
+	margin-top: 15px;
+}
+
 #loggedInDiv
 {
     font-size: 30px;
@@ -341,3 +346,4 @@ select{
     color: #7fffaa;
 
 }
+
