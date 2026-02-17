@@ -19,12 +19,18 @@
     $types = "i";
     $params = [$userId];
 
-    foreach ($words as $word) {
-        $sql .= " AND (FirstName LIKE ? OR LastName LIKE ?)";
+    $sql .= " AND (";
+
+    foreach ($words as $i => $word) {
+        if ($i > 0) {
+            $sql .= " OR ";
+        }
+        $sql .= "(FirstName LIKE ? OR LastName LIKE ?)";
         $types .= "ss";
         $params[] = "%$word%";
         $params[] = "%$word%";
     }
+    $sql .= ")";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param($types, ...$params);
