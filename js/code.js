@@ -168,7 +168,7 @@ function doLogout()
 function addContact(){
 	// format phone number
 	const cleanNumber = (value) => {
-		const cleaned = ('' + value).replace(/\D/g, '');
+		const cleaned = ('' + value).replace(/\D/g, '').toString();
 		if(cleaned.length !== 10){
 			document.getElementById("addContactResult").innerHTML = "Please enter a valid phone number.";
 			return value;
