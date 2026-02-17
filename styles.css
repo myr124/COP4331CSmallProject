@@ -19,6 +19,8 @@ body
     justify-content: center;
     align-items: center;
     text-align: center;
+	margin-bottom: 40px;
+	margin-top: 30px;
     font-size: 120px;
     font-family: 'Jersey 10', sans-serif;
     font-weight: 375;
@@ -70,6 +72,11 @@ body
 #regDiv input[type="email"] {
     font-size: 24px;
     padding: 10px 15px;
+}
+
+#regSubmit
+{
+	margin-top: 15px;
 }
 
 #loggedInDiv
@@ -149,12 +156,27 @@ body
 }
 
 input[type="text"],input[type="password"],input[type="email"]{
-    border-radius: 25px;
+    border-radius: 10px;
     display: block;
     margin: 5px auto;
     text-align: center;
     width: 80%;
-    font-family: 'Inconsolata', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #FFFFFF;
+    padding: 10px 15px;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus{
+    border-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+input[type="text"]::placeholder,input[type="password"]::placeholder,input[type="email"]::placeholder{
+    color: rgba(255, 255, 255, 0.6);
 }
 
 #inner-title{
@@ -162,8 +184,7 @@ input[type="text"],input[type="password"],input[type="email"]{
     font-size: 40px;
     width: 90%;
     text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
+    margin: auto;
     font-family: 'Jersey 10', sans-serif;
     color: #f1393f;
 }
@@ -305,6 +326,8 @@ select{
     font-size: 16px;
     width: 100%;
     margin: 0;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .edit-btn-row {
@@ -340,4 +363,14 @@ select{
     text-align: center;
     font-family: 'Inconsolata', sans-serif;
     color: #7fffaa;
+
 }
+
+#logoutButton
+{
+	margin-bottom: 30px;
+	margin-top: 10px;
+}
+
+
+

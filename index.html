@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<html lang="en">
 <head>
 	<title>Shark's Cove | Login</title>
 	<script type="text/javascript" src="js/md5.js"></script>
@@ -17,14 +18,16 @@
 
 <h1 id="title">Shark's Cove</h1>
 
-<div id="loginDiv">
+<div id="loginDiv" role="main">
 	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
+	<input type="text" id="loginName" placeholder="Username" />
+	<input type="password" id="loginPassword" placeholder="Password"/>
 	<button type="button" id="loginButton" class="buttons" onclick="doLogin();">Login</button>
 	<button type="button" id="registerButton" class="buttons" onclick="window.location.href='reg.html';"> Register </button>
 	<span id="loginResult"></span>
 </div>
 
 </body>
+
 </html>
+

@@ -5,11 +5,13 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
 
 function doRegister()
 {
-	const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	
 	let login = document.getElementById("registerEmail").value;
 	if (!validEmailRegex.test(login)) {
 		document.getElementById("registerResult").innerHTML = "Please enter a valid email address.";
@@ -165,14 +167,23 @@ function doLogout()
 
 function addContact(){
 	// format phone number
-	const cleanNumber = (value) =>{
-		const cleaned = ('' + value).replace(/\D/g, '');
+	const cleanNumber = (value) => {
+		const cleaned = ('' + value).replace(/\D/g, '').toString();
+		if(cleaned.length !== 10){
+			document.getElementById("addContactResult").innerHTML = "Please enter a valid phone number.";
+			return value;
+		}; 
 		const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
 		return match ? `(${match[1]}) ${match[2]}-${match[3]}` : value;
 	}
+
 	let contactFirstName = document.getElementById("firstName").value;
 	let contactLastName = document.getElementById("lastName").value;
 	let contactEmail = document.getElementById("email").value;
+	if (!validEmailRegex.test(contactEmail)) {
+		document.getElementById("addContactResult").innerHTML = "Please enter a valid email address.";
+		return;
+	}
 	let contactPhone = cleanNumber(document.getElementById("phone").value);
 
 	document.getElementById("addContactResult").innerHTML = "";
