@@ -162,8 +162,7 @@ input[type="text"],input[type="password"],input[type="email"]{
     font-size: 40px;
     width: 90%;
     text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
+    margin: auto;
     font-family: 'Jersey 10', sans-serif;
     color: #f1393f;
 }
@@ -340,4 +339,5 @@ select{
     text-align: center;
     font-family: 'Inconsolata', sans-serif;
     color: #7fffaa;
+
 }
