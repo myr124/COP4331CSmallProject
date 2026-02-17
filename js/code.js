@@ -20,10 +20,10 @@ function doRegister()
 	let password = document.getElementById("registerPassword").value;
 	let firstName = document.getElementById("registerFirstName").value;
 	let lastName = document.getElementById("registerLastName").value;
-
+	let hash = md5(password)
 	document.getElementById("registerResult").innerHTML = "";
 	
-	let tmp = {login:login,password:password,firstName:firstName,lastName:lastName};
+	let tmp = {login:login,password:hash,firstName:firstName,lastName:lastName};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/Register.' + extension;
