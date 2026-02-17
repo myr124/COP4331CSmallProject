@@ -13,10 +13,10 @@ function doRegister()
 {
 	
 	let login = document.getElementById("registerEmail").value;
-	if (!validEmailRegex.test(login)) {
-		document.getElementById("registerResult").innerHTML = "Please enter a valid email address.";
-		return;
-	}
+	// if (!validEmailRegex.test(login)) {
+	// 	document.getElementById("registerResult").innerHTML = "Please enter a valid email address.";
+	// 	return;
+	// }
 	let password = document.getElementById("registerPassword").value;
 	let firstName = document.getElementById("registerFirstName").value;
 	let lastName = document.getElementById("registerLastName").value;
