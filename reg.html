@@ -15,12 +15,26 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bubbles-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
     <h1 id="title">Shark's Cove</h1>
     <div id="regDiv" role="main">
         <span id="inner-title">REGISTRATION</span>
         <form id="regForm" onsubmit="doRegister(); return false;">
-            <div>
-                <input type="submit" value="Back" class="submit-btn top-btn" onclick="window.location.href='index.html'">
+            <div class="back-btn-container">
+                <button type="button" class="back-btn" onclick="window.location.href='index.html'">&#8592;</button>
             </div>
             <div class="form-row">
                 <label for="registerEmail" class="reg-label narrow-label">Username:</label>
@@ -28,7 +42,15 @@
             </div>
             <div class="form-row">
                 <label for="registerPassword" class="reg-label">Password:</label>
-                <input type="password" id="registerPassword" class="reg-input" required placeholder="Password">
+                <input type="password" id="registerPassword" class="reg-input" required placeholder="Password" oninput="checkPasswordRequirements()">
+            </div>
+            <div class="password-requirements">
+                <ul>
+                    <li id="req-length">8 to 32 characters</li>
+                    <li id="req-letter">At least one letter</li>
+                    <li id="req-number">At least one number</li>
+                    <li id="req-special">At least one special character</li>
+                </ul>
             </div>
             <div class="form-row">
                 <label for="registerFirstName" class="reg-label">First Name:</label>
