@@ -228,27 +228,44 @@ function doLogout() {
 }
 
 function addContact() {
-  // format phone number
-  const cleanNumber = (value) => {
-    const cleaned = ("" + value).replace(/\D/g, "").toString();
-    if (cleaned.length != 10) {
-      document.getElementById("addContactResult").innerHTML =
-        "Please enter a valid phone number.";
-      return value;
-    }
-    const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-    return match ? `(${match[1]}) ${match[2]}-${match[3]}` : value;
-  };
-
   let contactFirstName = document.getElementById("firstName").value;
   let contactLastName = document.getElementById("lastName").value;
   let contactEmail = document.getElementById("email").value;
-  if (!validEmailRegex.test(contactEmail)) {
-    document.getElementById("addContactResult").innerHTML =
-      "Please enter a valid email address.";
+  let contactPhoneRaw = document.getElementById("phone").value;
+
+  let resultEl = document.getElementById("addContactResult");
+  resultEl.classList.remove("success");
+
+  // Check if first name is empty
+  if (contactFirstName.trim().length === 0) {
+    resultEl.innerHTML = "Please enter a first name.";
     return;
   }
-  let contactPhone = cleanNumber(document.getElementById("phone").value);
+
+  // Check if last name is empty
+  if (contactLastName.trim().length === 0) {
+    resultEl.innerHTML = "Please enter a last name.";
+    return;
+  }
+
+  // Check email
+  if (!validEmailRegex.test(contactEmail)) {
+    resultEl.innerHTML = "Please enter a valid email address.";
+    return;
+  }
+
+  // Check phone number is 10 digits
+  const cleanedPhone = ("" + contactPhoneRaw).replace(/\D/g, "");
+  if (cleanedPhone.length !== 10) {
+    resultEl.innerHTML = "Please enter a valid 10-digit phone number.";
+    return;
+  }
+
+  // Format phone number
+  const phoneMatch = cleanedPhone.match(/^(\d{3})(\d{3})(\d{4})$/);
+  let contactPhone = phoneMatch
+    ? `(${phoneMatch[1]}) ${phoneMatch[2]}-${phoneMatch[3]}`
+    : contactPhoneRaw;
 
   document.getElementById("addContactResult").innerHTML = "";
 
@@ -269,8 +286,9 @@ function addContact() {
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("addContactResult").innerHTML =
-          "Contact has been added";
+        let resultEl = document.getElementById("addContactResult");
+        resultEl.innerHTML = "Contact has been added";
+        resultEl.classList.add("success");
         document.getElementById("firstName").value = "";
         document.getElementById("lastName").value = "";
         document.getElementById("email").value = "";

@@ -362,8 +362,11 @@ select{
     font-size: 0.6em;
     text-align: center;
     font-family: 'Inconsolata', sans-serif;
-    color: #7fffaa;
+    color: #ff6b6b;
+}
 
+#addContactResult.success {
+    color: #7fffaa;
 }
 
 #logoutButton
