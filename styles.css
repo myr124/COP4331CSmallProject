@@ -180,13 +180,13 @@ input[type="text"]::placeholder,input[type="password"]::placeholder,input[type="
 }
 
 #inner-title{
-    display: inline-block;
+    display: block;
     font-size: 40px;
-    width: 90%;
+    width: 100%;
     text-align: center;
-    margin: auto;
+    margin: 0 auto 10px auto;
     font-family: 'Jersey 10', sans-serif;
-    color: #f1393f;
+    color: #FFFFFF;
 }
 
 #loginResult{
@@ -362,14 +362,129 @@ select{
     font-size: 0.6em;
     text-align: center;
     font-family: 'Inconsolata', sans-serif;
-    color: #7fffaa;
+    color: #ff6b6b;
+}
 
+#addContactResult.success {
+    color: #7fffaa;
 }
 
 #logoutButton
 {
 	margin-bottom: 30px;
 	margin-top: 10px;
+}
+
+.back-btn-container {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.back-btn {
+    background-color: #FFFFFF;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:hover {
+    background-color: #2099cd4f;
+    color: #FFFFFF;
+}
+
+.password-requirements {
+    font-size: 14px;
+    font-family: 'Inconsolata', sans-serif;
+    text-align: left;
+    margin: 5px auto 10px auto;
+    width: 80%;
+}
+
+.password-requirements ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.password-requirements li {
+    margin: 3px 0;
+    color: #ff6b6b;
+    transition: color 0.3s ease;
+}
+
+.password-requirements li.fulfilled {
+    color: #6bff6b;
+}
+
+.password-requirements li.unfulfilled {
+    color: #ff6b6b;
+}
+
+#registerResult {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    margin: 10px auto;
+    font-family: 'Inconsolata', sans-serif;
+    color: #ff6b6b;
+}
+
+/* Bubble Animation Styles */
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-image: url('bubble.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    animation: rise linear infinite;
+}
+
+.bubble:nth-child(1) { left: 3%; width: 40px; height: 40px; animation-duration: 8s; animation-delay: 0s; }
+.bubble:nth-child(2) { left: 8%; width: 25px; height: 25px; animation-duration: 10s; animation-delay: 1s; }
+.bubble:nth-child(3) { left: 12%; width: 35px; height: 35px; animation-duration: 9s; animation-delay: 2s; }
+.bubble:nth-child(4) { left: 5%; width: 20px; height: 20px; animation-duration: 12s; animation-delay: 3s; }
+.bubble:nth-child(5) { left: 15%; width: 30px; height: 30px; animation-duration: 11s; animation-delay: 0.5s; }
+.bubble:nth-child(6) { left: 10%; width: 45px; height: 45px; animation-duration: 7s; animation-delay: 4s; }
+.bubble:nth-child(7) { right: 3%; left: auto; width: 40px; height: 40px; animation-duration: 9s; animation-delay: 0s; }
+.bubble:nth-child(8) { right: 8%; left: auto; width: 25px; height: 25px; animation-duration: 11s; animation-delay: 2s; }
+.bubble:nth-child(9) { right: 12%; left: auto; width: 35px; height: 35px; animation-duration: 8s; animation-delay: 1s; }
+.bubble:nth-child(10) { right: 5%; left: auto; width: 20px; height: 20px; animation-duration: 13s; animation-delay: 3.5s; }
+.bubble:nth-child(11) { right: 15%; left: auto; width: 30px; height: 30px; animation-duration: 10s; animation-delay: 1.5s; }
+.bubble:nth-child(12) { right: 10%; left: auto; width: 45px; height: 45px; animation-duration: 8s; animation-delay: 2.5s; }
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        bottom: 110%;
+        transform: translateX(20px) rotate(360deg);
+        opacity: 0.3;
+    }
 }
 
 
